@@ -26,7 +26,8 @@ RUN apt-get update && apt-get install -y \
     liblapack-dev \
     python-catkin-tools \
     libv4l-dev \
-    wget
+    wget \
+    ros-indigo-usb-cam
 RUN pip install python-igraph --upgrade
 
 # Catkin workspace and setup
@@ -41,5 +42,5 @@ RUN ["/bin/bash", "-c", "catkin config --cmake-args -DCMAKE_BUILD_TYPE=Release"]
 # Clone and build Kalibr
 RUN git clone https://github.com/ethz-asl/Kalibr.git /root/workspace/src/Kalibr
 WORKDIR /root/workspace
-RUN ["/bin/bash", "-c", "catkin build -DCMAKE_BUILD_TYPE=Release -j8"]
+RUN ["/bin/bash", "-c", "catkin build -DCMAKE_BUILD_TYPE=Release"]
 RUN ["/bin/bash", "-c", "source /root/workspace/devel/setup.bash"]
